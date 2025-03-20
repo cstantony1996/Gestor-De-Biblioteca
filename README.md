@@ -19,8 +19,8 @@ Esta aplicación está desarrollada en **C++** con integración de **PostgreSQL*
 ## Integrantes del equipo
 
 - **Antony Castañón**
-- **Osman Suray**
-- **Darwin Suray**
+- **Osman Hernandez**
+- **Darwin Hernandez**
 
 ## Tecnologías utilizadas
 
@@ -35,7 +35,7 @@ Para usar esta aplicación, sigue los siguientes pasos:
 
 1. Clona el repositorio en tu máquina local:
     ```bash
-    git clone https://github.com/cstantony1996/GestorDeBiblioteca.git
+    https://github.com/cstantony1996/Gestor-De-Biblioteca.git
     ```
 2. Asegúrate de tener **PostgreSQL** instalado y configurado.
 3. Configura la base de datos en el archivo de configuración (si es necesario).
