@@ -112,24 +112,41 @@
  }
  
  void Libro::guardarEnDB() {
- 
-     try {
-         if (!conn)
-             throw runtime_error("No hay conexión a la base de datos.");
- 
-         const char *paramValues[6] = {titulo.c_str(), autor.c_str(), isbn.c_str(), editorial.c_str(), año_publicacion.c_str(), materia.c_str()};
-         const char *insertQuery = "INSERT INTO agregar_libros (titulo, autor, isbn, editorial, año_publicacion, materia) VALUES ($1, $2, $3, $4, $5, $6)";
- 
-         PGresult *insertRes = PQexecParams(conn, insertQuery, 6, NULL, paramValues, NULL, NULL, 0);
-         
-         if (PQresultStatus(insertRes) != PGRES_COMMAND_OK) {
-             throw runtime_error(PQerrorMessage(conn));
-         } else {
-             cout<< "📚 Libro: " << titulo << " ha sido agregado exitosamente" << endl;
-         }
- 
-         PQclear(insertRes);
-     } catch (const exception &e) {
-         cerr << "⚠️ Error al insertar datos: " << e.what() << endl;
-     }
- }
+    try {
+        if (!conn)
+            throw runtime_error("No hay conexión a la base de datos.");
+
+        // 🚀 Verificar si el ISBN ya existe en agregar_libros
+        if (isbnExiste()) {
+            cout << "⚠️ El ISBN ya está registrado." << endl;
+            return;
+        }
+
+        const char *paramValues[6] = {titulo.c_str(), autor.c_str(), isbn.c_str(), editorial.c_str(), año_publicacion.c_str(), materia.c_str()};
+        
+        // 🚀 Insertar en agregar_libros
+        const char *insertQuery1 = "INSERT INTO agregar_libros (titulo, autor, isbn, editorial, año_publicacion, materia) VALUES ($1, $2, $3, $4, $5, $6)";
+        PGresult *insertRes1 = PQexecParams(conn, insertQuery1, 6, NULL, paramValues, NULL, NULL, 0);
+        
+        if (PQresultStatus(insertRes1) != PGRES_COMMAND_OK) {
+            PQclear(insertRes1);
+            throw runtime_error("Error al insertar: " + string(PQerrorMessage(conn)));
+        }
+        PQclear(insertRes1);
+
+        // 🚀 Insertar en libros
+        const char *insertQuery2 = "INSERT INTO libros (titulo, autor, isbn, editorial, año_publicacion, materia) VALUES ($1, $2, $3, $4, $5, $6)";
+        PGresult *insertRes2 = PQexecParams(conn, insertQuery2, 6, NULL, paramValues, NULL, NULL, 0);
+        
+        if (PQresultStatus(insertRes2) != PGRES_COMMAND_OK) {
+            PQclear(insertRes2);
+            throw runtime_error("Error al insertar: " + string(PQerrorMessage(conn)));
+        }
+        PQclear(insertRes2);
+
+        cout << "📚 Libro: " << titulo << " ha sido agregado exitosamente." << endl;
+
+    } catch (const exception &e) {
+        cerr << "⚠️ Error al insertar datos: " << e.what() << endl;
+    }
+}
