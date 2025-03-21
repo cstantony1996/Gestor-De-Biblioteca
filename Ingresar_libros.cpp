@@ -1,6 +1,7 @@
 #include "Ingresar_libros.h"
  #include <iostream>
  #include <stdexcept>
+ #include <limits>
  #include <cctype>
  #include <regex>
  

@@ -1,5 +1,8 @@
 {
     "files.associations": {
+        "*.sqlbook": "sql",
+        "*.ndjson": "jsonl",
+        "*.dbclient-js": "javascript",
         "iostream": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -50,6 +53,10 @@
         "streambuf": "cpp",
         "text_encoding": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
-    }
+        "variant": "cpp",
+        "bitset": "cpp",
+        "regex": "cpp",
+        "sstream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

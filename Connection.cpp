@@ -6,7 +6,7 @@ using namespace std;
 PGconn* conectarDB() {
     cout << "Inicia conexión a la base de datos. " << endl;
 
-    const char *conninfo = "dbname=postgres user=postgres password=Myroot host=localhost port=5432";
+    const char *conninfo = "dbname=postgres user=postgres password=asdf1234 host=localhost port=5432";
      PGconn *conn = PQconnectdb(conninfo);
  
      if (PQstatus(conn) != CONNECTION_OK)
