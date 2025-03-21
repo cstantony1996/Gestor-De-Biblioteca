@@ -9,7 +9,7 @@
          PGconn *conn = conectarDB();
          if (!conn)
              throw runtime_error("No se pudo establecer conexión con la base de datos.");
- 
+             
          Libro libro(conn);
          libro.ingresarDatos();
          libro.guardarEnDB();
