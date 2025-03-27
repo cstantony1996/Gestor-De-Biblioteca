@@ -39,6 +39,7 @@
                  cout << "El autor es obligatorio." << endl;
              } else if (!Letras(autor)) {
                  cout << "El autor solo puede contener letras." << endl;
+                 autor.clear();
              }
          } while (autor.empty() || !Letras(autor));
  
@@ -50,8 +51,10 @@
                  cout << "El ISBN es obligatorio." << endl;
              } else if (!esNumero(isbn)) {
                  cout << "El ISBN solo puede contener números." << endl;
+                 isbn.clear();
              } else if (isbnExiste()) {
                  cout << "El ISBN ya está registrado." << endl;
+                 isbn.clear();
              }
          } while (isbn.empty() || !esNumero(isbn) || isbnExiste());
  
@@ -63,6 +66,7 @@
                  cout << "La editorial es obligatoria." << endl;
              } else if (!Letras(editorial)) {
                  cout << "La editorial solo puede contener letras." << endl;
+                 editorial.clear();
              }
          } while (editorial.empty() || !Letras(editorial));
  
@@ -74,6 +78,7 @@
                  cout << "El año de publicación es obligatorio." << endl;
              } else if (!esNumero(año_publicacion)) {
                  cout << "El año de publicación solo puede contener números." << endl;
+                 año_publicacion.clear();
              }
          } while (año_publicacion.empty() || !esNumero(año_publicacion));
  
@@ -85,6 +90,7 @@
                  cout << "La materia es obligatoria." << endl;
              } else if (!Letras(materia)) {
                  cout << "La materia solo puede contener letras." << endl;
+                 materia.clear();
              }
          } while (materia.empty() || !Letras(materia));
  
