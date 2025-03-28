@@ -1,33 +1,32 @@
-
-# GestorDeBiblioteca
-
-Este sera nuestro proyecto de Semestre, donde estaremos trabajando para crear un Gestor de Biblioteca, trabajando con C++, git y GitHub.
-
 # Gestor de Biblioteca
 
-**Gestor de Biblioteca** es una aplicación que tiene como objetivo facilitar la gestión de libros en un centro educativo. El sistema permite realizar las siguientes operaciones:
+![Gráfico de contribuciones](https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/pacman-contribution-graph.svg)
 
-- **Agregar libros** al inventario.
-- **Buscar libros** por diferentes parámetros.
-- **Prestar y devolver libros**.
-- **Listar todos los libros** registrados.
-- **Persistencia de datos** para mantener el estado de los libros.
-- **Manejo de errores** para mejorar la experiencia de usuario.
+Este es nuestro proyecto de semestre para desarrollar un sistema de gestión de biblioteca utilizando tecnologías modernas.
 
-Esta aplicación está desarrollada en **C++** con integración de **PostgreSQL** para la persistencia de datos. El uso de **Git** nos permite controlar versiones y colaborar eficientemente en el proyecto.
+## 🚀 Características principales
 
-## Integrantes del equipo
+- 📚 **Gestión de libros**: Añadir, editar y eliminar libros del inventario
+- 🔍 **Búsqueda avanzada**: Encontrar libros por título, autor, ISBN o categoría
+- 🔄 **Préstamos**: Registrar préstamos y devoluciones de libros
+- 📊 **Reportes**: Generar reportes de libros disponibles, prestados y vencidos
+- 🔒 **Autenticación**: Sistema de login seguro para diferentes tipos de usuarios
 
-- **Antony Castañón**
-- **Osman Hernandez**
-- **Darwin Hernandez**
+## 🛠 Tecnologías utilizadas
 
-## Tecnologías utilizadas
+| Tecnología | Descripción |
+|------------|-------------|
+| C++17 | Lenguaje de programación principal |
+| PostgreSQL | Sistema de gestión de base de datos |
+| libpqxx | Biblioteca C++ para PostgreSQL |
+| Git | Control de versiones |
+| GitHub | Plataforma de colaboración |
 
-- **Lenguaje de programación:** C++
-- **Base de datos:** PostgreSQL
-- **Control de versiones:** Git, GitHub
-- **IDE:** Visual Studio Code
+## 👥 Equipo de desarrollo
+
+- **Antony Castañón** - Desarrollo backend y gestión de base de datos
+- **Osman Hernández** - Interfaz de usuario y lógica de negocio
+- **Darwin Hernández** - Sistema de autenticación y seguridad
 
 ## Instalación
 
