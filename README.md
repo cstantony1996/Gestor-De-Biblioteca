@@ -1,6 +1,7 @@
 # Gestor de Biblioteca
 
-![Gráfico de contribuciones](https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/pacman-contribution-graph.svg)
+<img src="https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/snake.svg" alt="Snake animation" />
+
 
 Este es nuestro proyecto de semestre para desarrollar un sistema de gestión de biblioteca utilizando tecnologías modernas.
 
