@@ -1,13 +1,5 @@
 # Gestor de Biblioteca
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
-  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
-</picture>
-
-###
-
 Este es nuestro proyecto de semestre para desarrollar un sistema de gestión de biblioteca utilizando tecnologías modernas.
 
 ## 🚀 Características principales
@@ -59,3 +51,11 @@ Para usar esta aplicación, sigue los siguientes pasos:
 ## Contribuciones
 
 Si deseas contribuir al proyecto, siéntete libre de hacer un **fork** y enviar un **pull request** con tus mejoras o correcciones. 
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
+  <img alt="github-snake" src="https://raw.githubusercontent.com/tobiasmeyhoefer/tobiasmeyhoefer/output/github-snake.svg" />
+</picture>
+
+###
