@@ -24,9 +24,9 @@ Este es nuestro proyecto de semestre para desarrollar un sistema de gestión de 
 
 ## 👥 Equipo de desarrollo
 
-- **Antony Castañón** - Desarrollo backend y gestión de base de datos
-- **Osman Hernández** - Interfaz de usuario y lógica de negocio
-- **Darwin Hernández** - Sistema de autenticación y seguridad
+- **Antony Castañón** 
+- **Osman Hernández** 
+- **Darwin Hernández** 
 
 ## Instalación
 
@@ -43,11 +43,3 @@ Para usar esta aplicación, sigue los siguientes pasos:
 ## Contribuciones
 
 Si deseas contribuir al proyecto, siéntete libre de hacer un **fork** y enviar un **pull request** con tus mejoras o correcciones. 
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/pacman-contribution-graph.svg">
-  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/cstantony1996/cstantony1996/output/pacman-contribution-graph.svg">
-</picture>
-
-###
