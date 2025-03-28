@@ -22,6 +22,16 @@ Este es nuestro proyecto de semestre para desarrollar un sistema de gestión de 
 | Git | Control de versiones |
 | GitHub | Plataforma de colaboración |
 
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" height="40" alt="cplusplus logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="40" alt="postgresql logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" height="40" alt="vscode logo"  />
+</div>
+
+###
+
 ## 👥 Equipo de desarrollo
 
 - **Antony Castañón** 
