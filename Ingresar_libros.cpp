@@ -1,104 +1,132 @@
 #include "Ingresar_libros.h"
- #include <iostream>
- #include <stdexcept>
- #include <cctype>
- #include <regex>
- 
- using namespace std;
- 
- Libro::Libro(PGconn *conexion) : conn(conexion) {}
- 
- bool esNumero(const string& str) {
- 
-     return all_of(str.begin(), str.end(), ::isdigit);
- }
- 
- bool Letras(const string& str) {
- 
-     return all_of(str.begin(), str.end(), ::isalpha);
- }
- 
- void Libro::ingresarDatos(){
- 
-     try {
-     
-         // Titulo: puede contener letras y números
-         do {
-             cout << "Ingrese el título: ";
-             getline(cin, titulo);
-             if (titulo.empty()) {
-                 cout << "El título es obligatorio." << endl;
-             }
-         } while (titulo.empty());
- 
-         // Autor: solo letras
-         do {
-             cout << "Ingrese el autor: ";
-             getline(cin, autor);
-             if (autor.empty()) {
-                 cout << "El autor es obligatorio." << endl;
-             } else if (!Letras(autor)) {
-                 cout << "El autor solo puede contener letras." << endl;
-                 autor.clear();
-             }
-         } while (autor.empty() || !Letras(autor));
- 
-         // ISBN: solo números
-         do {
-             cout << "Ingrese el ISBN: ";
-             getline(cin, isbn);
-             if (isbn.empty()) {
-                 cout << "El ISBN es obligatorio." << endl;
-             } else if (!esNumero(isbn)) {
-                 cout << "El ISBN solo puede contener números." << endl;
-                 isbn.clear();
-             } else if (isbnExiste()) {
-                 cout << "El ISBN ya está registrado." << endl;
-                 isbn.clear();
-             }
-         } while (isbn.empty() || !esNumero(isbn) || isbnExiste());
- 
-         // Editorial: solo letras
-         do {
-             cout << "Ingrese la editorial: ";
-             getline(cin, editorial);
-             if (editorial.empty()) {
-                 cout << "La editorial es obligatoria." << endl;
-             } else if (!Letras(editorial)) {
-                 cout << "La editorial solo puede contener letras." << endl;
-                 editorial.clear();
-             }
-         } while (editorial.empty() || !Letras(editorial));
- 
-         // Año de publicación: solo números
-         do {
-             cout << "Ingrese año de publicación: ";
-             getline(cin, año_publicacion);
-             if (año_publicacion.empty()) {
-                 cout << "El año de publicación es obligatorio." << endl;
-             } else if (!esNumero(año_publicacion)) {
-                 cout << "El año de publicación solo puede contener números." << endl;
-                 año_publicacion.clear();
-             }
-         } while (año_publicacion.empty() || !esNumero(año_publicacion));
- 
-         // Materia: solo letras
-         do {
-             cout << "Ingrese la materia: ";
-             getline(cin, materia);
-             if (materia.empty()) {
-                 cout << "La materia es obligatoria." << endl;
-             } else if (!Letras(materia)) {
-                 cout << "La materia solo puede contener letras." << endl;
-                 materia.clear();
-             }
-         } while (materia.empty() || !Letras(materia));
- 
-     } catch (const invalid_argument &e) {
-         cerr << "Error: " << e.what() << endl;
-         ingresarDatos();
-     }
- }
+#include <iostream>
+#include <stdexcept>
+#include <cctype>
+#include <regex>
+
+using namespace std;
+
+Libro::Libro(PGconn *conexion) : conn(conexion) {}
+
+bool esNumero(const string& str) {
+    return all_of(str.begin(), str.end(), ::isdigit);
+}
+
+bool LetrasConEspacios(const string& str) {
+    return all_of(str.begin(), str.end(), [](char c) {
+        return isalpha(c) || c == ' ' || c == '.'; // Permite letras, espacios y puntos
+    });
+}
+
+bool ValidarTextoGeneral(const string& str) {
+    // Permite letras, números, espacios y caracteres comunes en títulos
+    for (char c : str) {
+        if (!(isalnum(c) || c == ' ' || c == ',' || c == '.' || c == '-')) {
+            // Verificar caracteres especiales en español
+            switch(static_cast<unsigned char>(c)) {
+                case 0xE1: // á
+                case 0xE9: // é
+                case 0xED: // í
+                case 0xF3: // ó
+                case 0xFA: // ú
+                case 0xF1: // ñ
+                case 0xC1: // Á
+                case 0xC9: // É
+                case 0xCD: // Í
+                case 0xD3: // Ó
+                case 0xDA: // Ú
+                case 0xD1: // Ñ
+                    continue;
+                default:
+                    return false;
+            }
+        }
+    }
+    return true;
+}
+
+void Libro::ingresarDatos(){
+    try {
+        // Título: permite letras, números y espacios
+        do {
+            cout << "Ingrese el título: ";
+            getline(cin, titulo);
+            if (titulo.empty()) {
+                cout << "El título es obligatorio." << endl;
+            } else if (!ValidarTextoGeneral(titulo)) {
+                cout << "El título contiene caracteres no válidos." << endl;
+                titulo.clear();
+            }
+        } while (titulo.empty() || !ValidarTextoGeneral(titulo));
+
+        // Autor: permite letras y espacios
+        do {
+            cout << "Ingrese el autor: ";
+            getline(cin, autor);
+            if (autor.empty()) {
+                cout << "El autor es obligatorio." << endl;
+            } else if (!LetrasConEspacios(autor)) {
+                cout << "El autor solo puede contener letras y espacios." << endl;
+                autor.clear();
+            }
+        } while (autor.empty() || !LetrasConEspacios(autor));
+
+        // ISBN: solo números (sin cambios)
+        do {
+            cout << "Ingrese el ISBN: ";
+            getline(cin, isbn);
+            if (isbn.empty()) {
+                cout << "El ISBN es obligatorio." << endl;
+            } else if (!esNumero(isbn)) {
+                cout << "El ISBN solo puede contener números." << endl;
+                isbn.clear();
+            } else if (isbnExiste()) {
+                cout << "El ISBN ya está registrado." << endl;
+                isbn.clear();
+            }
+        } while (isbn.empty() || !esNumero(isbn) || isbnExiste());
+
+        // Editorial: permite letras y espacios
+        do {
+            cout << "Ingrese la editorial: ";
+            getline(cin, editorial);
+            if (editorial.empty()) {
+                cout << "La editorial es obligatoria." << endl;
+            } else if (!LetrasConEspacios(editorial)) {
+                cout << "La editorial solo puede contener letras y espacios." << endl;
+                editorial.clear();
+            }
+        } while (editorial.empty() || !LetrasConEspacios(editorial));
+
+        // Año de publicación: solo números (sin cambios)
+        do {
+            cout << "Ingrese año de publicación: ";
+            getline(cin, año_publicacion);
+            if (año_publicacion.empty()) {
+                cout << "El año de publicación es obligatorio." << endl;
+            } else if (!esNumero(año_publicacion)) {
+                cout << "El año de publicación solo puede contener números." << endl;
+                año_publicacion.clear();
+            }
+        } while (año_publicacion.empty() || !esNumero(año_publicacion));
+
+        // Materia: permite letras y espacios
+        do {
+            cout << "Ingrese la materia: ";
+            getline(cin, materia);
+            if (materia.empty()) {
+                cout << "La materia es obligatoria." << endl;
+            } else if (!LetrasConEspacios(materia)) {
+                cout << "La materia solo puede contener letras y espacios." << endl;
+                materia.clear();
+            }
+        } while (materia.empty() || !LetrasConEspacios(materia));
+
+    } catch (const invalid_argument &e) {
+        cerr << "Error: " << e.what() << endl;
+        ingresarDatos();
+    }
+}
  
  bool Libro::isbnExiste() {
  
