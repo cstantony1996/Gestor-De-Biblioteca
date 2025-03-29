@@ -12,7 +12,7 @@ using namespace std;
 UserAuth::UserAuth(PGconn* connection) : conn(connection) {}
 
 string UserAuth::hashPassword(const string& password) {
-    // Alternativa simple para desarrollo (no usar en producción)
+    
     hash<string> hasher;
     size_t hashValue = hasher(password + "somesalt");
     return to_string(hashValue);
