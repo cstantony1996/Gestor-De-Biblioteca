@@ -10,6 +10,7 @@
                 "-g",
                 "Ingresar_libros.cpp",
                 "Connection.cpp",
+                "UserAuth.cpp",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe",
