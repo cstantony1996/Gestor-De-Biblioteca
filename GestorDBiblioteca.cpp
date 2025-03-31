@@ -1,44 +1,42 @@
 #include "Connection.h"
 #include "Ingresar_libros.h"
-#include "Listar_libros.h"
+#include "UserAuth.h"
 #include <iostream>
+#include <limits>
  
-using namespace std;
+ using namespace std;
+ 
+ int main() {
+     try {
+         PGconn *conn = conectarDB();
+         if (!conn) {
+             throw runtime_error("No se pudo establecer conexión con la base de datos.");
+         }
+         
+         UserAuth auth(conn);
 
-int main() {
-    try {
-        PGconn *conn = conectarDB();
-        if (!conn)
-            throw runtime_error("No se pudo conectar a la base de datos.");
+         auth.showAuthMenu();
 
-        int opcion;
-        do {
-            cout << "1. Ingresar libro" << endl;
-            cout << "2. Listar libros" << endl;
-            cout << "3. Salir" << endl;
-            cout << "Opción: ";
-            cin >> opcion;
-            cin.ignore();
+         if (!auth.isAuthenticated()) {
+            cout << "⚠️ No se pudo iniciar sesión." << endl;
+            PQfinish(conn);
+            return 0;
+        }
+             
+         cout << "\n════════ SISTEMA DE GESTIÓN DE LIBROS ════════" << endl;
+         Libro libro(conn);
+         libro.ingresarDatos();
+         libro.guardarEnDB();
+ 
+         PQfinish(conn);
 
-            if (opcion == 1) {
-                Libro libro(conn);
-                libro.ingresarDatos();
-                libro.guardarEnDB();
-            } else if (opcion == 2) {
-                ListarLibros ListarLibros(conn);
-                ListarLibros.mostrarLibrosOrdenados();
-            } else if (opcion != 3) {
-                cout << "Opcion no valida" << endl;
-            }
-        } while (opcion != 3);
+     } catch (const exception &e) {
+         cerr << "Error crítico: " << e.what() << endl;
+     }
+ 
+     cout << "\nPresiona Enter para salir..." << endl;
+     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+     cin.get();
 
-        PQfinish(conn);
-    } catch (const exception &e) {
-        cerr << "Error: " << e.what() << endl;
-    }
-
-    cout << "Presione Enter para salir...";
-    cin.get();
-    return 0;
-
-}
+     return 0;
+ }
