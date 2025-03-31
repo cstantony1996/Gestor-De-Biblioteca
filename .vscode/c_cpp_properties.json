@@ -4,7 +4,11 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Program Files/PostgreSQL/15/include"
+                "C:/Program Files/PostgreSQL/15/include",
+                "C:/msys64/mingw64/include/qt6/**",
+                "C:/msys64/mingw64/include/qt6/QtWidgets",
+                "C:/msys64/mingw64/include/qt6/QtCore",
+                "C:/msys64/mingw64/include/qt6/QtGui"
             ],
             "defines": [
                 "_DEBUG",
