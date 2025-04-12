@@ -15,12 +15,12 @@ LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 void BuscarLibro(HWND hwnd);
 void PrestarLibro(HWND hwnd);
 
-int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PWSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
     const wchar_t CLASS_NAME[] = L"BibliotecaApp";
     
     WNDCLASSW wc = { };
     wc.lpfnWndProc = WindowProcedure;
-    wc.hInstance = hInst;
+    wc.hInstance = hInstance;
     wc.lpszClassName = CLASS_NAME;
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     
@@ -31,14 +31,14 @@ int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PWSTR lpCmdLine, int n
 
     HWND hwnd = CreateWindowExW(0, CLASS_NAME, L"Sistema de Biblioteca", WS_OVERLAPPEDWINDOW, 
                                CW_USEDEFAULT, CW_USEDEFAULT, 500, 400, 
-                               NULL, NULL, hInst, NULL);
+                               NULL, NULL, hInstance, NULL);
 
     if (!hwnd) {
         MessageBoxW(NULL, L"Creación de ventana fallida!", L"Error", MB_ICONEXCLAMATION | MB_OK);
         return 0;
     }
 
-    ShowWindow(hwnd, nCmdShow);
+    ShowWindow(hwnd, nShowCmd);
     UpdateWindow(hwnd);
 
     if (!biblioteca.conectarDB("dbname=postgres user=postgres password=Myroot")) {

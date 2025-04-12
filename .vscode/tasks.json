@@ -2,16 +2,17 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "shell",
+            "type": "cppbuild",
             "label": "C++: g++ exe personalizado",
             "command": "C:/msys64/ucrt64/bin/g++.exe", 
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "-mwindows",
                 "Ingresar_libros.cpp",
                 "Connection.cpp",
                 "libros_prestados.cpp",
-                "${file}",
+                "prestar_libros_v.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}.exe",
                 "-I",
