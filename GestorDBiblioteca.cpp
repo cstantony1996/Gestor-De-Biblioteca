@@ -5,7 +5,7 @@
  
 using namespace std;
 
-int main() {
+int mainGestor() {
     try {
         PGconn *conn = conectarDB();
         if (!conn)
