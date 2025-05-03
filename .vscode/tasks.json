@@ -17,7 +17,10 @@
                 "C:/Program Files/PostgreSQL/15/include",
                 "-L",
                 "C:/Program Files/PostgreSQL/15/lib",
-                "-lpq"
+                "-lpq",
+                "/EHsc",
+                "/link",
+                "/SUBSYSTEM:WINDOWS"
             ],
             "options": {
                 "cwd": "${fileDirname}"
